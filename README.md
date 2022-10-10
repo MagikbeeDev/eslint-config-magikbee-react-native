@@ -14,8 +14,8 @@ npm install eslint @magikbee/eslint-config-magikbee-react-native --save-dev
 
 ```js
 {
-  'extends': [
-    '@magikbee/eslint-config-magikbee-react-native'
+  "extends": [
+    "@magikbee/eslint-config-magikbee-react-native"
   ]
 }
 ```
