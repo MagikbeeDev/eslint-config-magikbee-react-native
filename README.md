@@ -7,10 +7,16 @@
 1. In your project folder, run:
 
 ```
-npm install eslint @magikbee/eslint-config-magikbee-react-native --save-dev
+npm install -D @magikbee/eslint-config-magikbee-react-native
 ```
 
-2. Create (or update) a `.eslintrc` file in your project folder with the following content:
+2. Install peer dependencies:
+
+```
+npm install -D eslint@^8.25.0 eslint-plugin-react@^7.31.9 eslint-plugin-react-native@^4.0.0 @typescript-eslint/eslint-plugin@^5.39.0 @typescript-eslint/parser@^5.39.0 eslint-config-standard-with-typescript@^23.0.0 eslint-plugin-import@^2.26.0 eslint-plugin-n@^15.3.0 eslint-plugin-promise@^6.0.1 typescript@^4.8.4
+```
+
+3. Create (or update) a `.eslintrc` file in your project folder with the following content:
 
 ```js
 {
