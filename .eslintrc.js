@@ -68,6 +68,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react-native/no-raw-text': 0,
 
+    //disable some rules to avoid conflicts with eslint rules
     '@typescript-eslint/ban-ts-ignore': 0,
     '@typescript-eslint/indent': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
@@ -77,6 +78,12 @@ module.exports = {
     '@typescript-eslint/no-object-literal-type-assertion': 0,
     '@typescript-eslint/no-empty-interface': 0,
     '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/camelcase': 0
+    '@typescript-eslint/camelcase': 0,
+    "@typescript-eslint/brace-style": 0,
+    "@typescript-eslint/naming-convention": 0,
+    "@typescript-eslint/space-before-function-paren": 0,
+    "@typescript-eslint/promise-function-async": 0,
+    "@typescript-eslint/no-floating-promises": 0,
+    "@typescript-eslint/array-type": 0
   },
 }
