@@ -36,7 +36,7 @@ module.exports = {
     it: false,
   },
   rules: {
-    indent: ['error', 2],
+    indent: ['error', 2, { SwitchCase: 1, ignoreComments: true }],
     'padding-line-between-statements': [
       'error',
       {
