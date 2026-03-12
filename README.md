@@ -75,3 +75,31 @@ Install the [ESLint extension](https://marketplace.visualstudio.com/items?itemNa
   }
 }
 ```
+
+## Create A New NPM Version
+
+1. Update package version:
+
+```bash
+npm version <new-version>
+```
+
+2. Commit the version files:
+
+```bash
+git add package.json package-lock.json
+git commit -m "chore(release): <new-version>"
+```
+
+3. Create and push the git tag:
+
+```bash
+git tag <new-version>
+git push origin main --tags
+```
+
+4. Publish to npm:
+
+```bash
+npm publish --access public
+```
