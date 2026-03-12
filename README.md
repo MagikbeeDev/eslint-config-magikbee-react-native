@@ -1,70 +1,135 @@
-# ESLint config for React Native projects
+# React Native Lint/Format/TS Baseline
 
-- Use an [extension of eslint-config-standard, made for TypeScript](https://github.com/standard/eslint-config-standard-with-typescript)
+Shared config package for React Native projects (`react-native >= 0.80.0`) with:
 
-## Installing
+- ESLint config
+- Prettier config
+- TypeScript config
 
-1. In your project folder, run:
+## Install In Consumer Project
 
-```
+```bash
 npm install -D @magikbee/eslint-config-magikbee-react-native
 ```
 
-2. Install peer dependencies:
+Install peer dependencies:
 
-```
-npm install -D eslint@^8.25.0 eslint-plugin-react@^7.31.9 eslint-plugin-react-native@^4.0.0 @typescript-eslint/eslint-plugin@^5.39.0 @typescript-eslint/parser@^5.39.0 eslint-config-standard-with-typescript@^23.0.0 eslint-plugin-import@^2.26.0 eslint-plugin-n@^15.3.0 eslint-plugin-promise@^6.0.1 typescript@^4.8.4
+```bash
+npm install -D @react-native/eslint-config @react-native/typescript-config @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-standard eslint-config-prettier eslint-plugin-import eslint-plugin-n eslint-plugin-promise eslint-plugin-react eslint-plugin-react-native eslint-plugin-reactotron prettier typescript
 ```
 
-3. Create (or update) a `.eslintrc` file in your project folder with the following content:
+## Use ESLint Config
+
+Create/update `.eslintrc`:
+
+```json
+{
+  "extends": ["@magikbee/eslint-config-magikbee-react-native"]
+}
+```
+
+This shared config includes `@react-native` as the React Native baseline required by recent RN versions.
+
+## Use Prettier Config
+
+Create/update `prettier.config.cjs`:
 
 ```js
-{
-  "extends": [
-    "@magikbee/eslint-config-magikbee-react-native"
-  ]
-}
+module.exports = require("@magikbee/eslint-config-magikbee-react-native/prettier")
 ```
 
-## How To Override Default Config
+## Use TypeScript Config
 
-1. Add your custom ESLint rules directly in .eslintrc file under "rules"
-
-## Extend TSConfig (Config required for Standard plugin)
-
-1. Create (or update) a `.tsconfig.json` file in your project folder and add the following content: 
+Create/update `tsconfig.json`:
 
 ```json
 {
-  ...
-  "extends": "@magikbee/eslint-config-magikbee-react-native/.tsconfig.json", 
-  ...
+  "extends": "@magikbee/eslint-config-magikbee-react-native/tsconfig"
 }
 ```
 
-## Integration with VSCode
+## Override Rules
 
-1. Install [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-2. Edit VSCode settings and edit or add the following settings:
+Add custom ESLint rules in the consumer `.eslintrc`:
 
 ```json
-//tells the ESLint extension which languages it should check
-"eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-],
-// avoid conflicts with eslint rules
-"editor.formatOnSave": false,
-// show eslint icon at bottom toolbar
-"eslint.alwaysShowStatus": true,
-// turns on Auto Fix for ESLint
-"editor.codeActionsOnSave": {
-  "source.fixAll.eslint": true
+{
+  "extends": ["@magikbee/eslint-config-magikbee-react-native"],
+  "rules": {
+    "no-console": "off"
+  }
 }
 ```
 
-- User settings: applied to all workspaces.
-- Workspace settings: only applied to the current workspace.
+## Integration With VSCode
+
+Install the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and set:
+
+```json
+{
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.formatOnSave": false,
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
+
+## Test In A Consumer React Native Project
+
+1. In your RN app (`react-native >= 0.80`), install this package and peers:
+
+```bash
+npm install -D @magikbee/eslint-config-magikbee-react-native @react-native/eslint-config @react-native/typescript-config @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-standard eslint-config-prettier eslint-plugin-import eslint-plugin-n eslint-plugin-promise eslint-plugin-react eslint-plugin-react-native eslint-plugin-reactotron prettier typescript
+```
+
+2. Configure the app:
+
+- `.eslintrc`
+
+```json
+{
+  "extends": ["@magikbee/eslint-config-magikbee-react-native"]
+}
+```
+
+- `prettier.config.cjs`
+
+```js
+module.exports = require("@magikbee/eslint-config-magikbee-react-native/prettier")
+```
+
+- `tsconfig.json`
+
+```json
+{
+  "extends": "@magikbee/eslint-config-magikbee-react-native/tsconfig"
+}
+```
+
+3. Add scripts in the app `package.json`:
+
+```json
+{
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit"
+  }
+}
+```
+
+4. Run the checks:
+
+```bash
+npm run lint
+npm run format:check
+npm run typecheck
+```
+
+5. Quick smoke test:
+
+- Create a temporary file with bad formatting and an unused variable.
+- Run `npm run lint` and `npm run format:check` and confirm errors are reported.
+- Fix the file (or run prettier), rerun checks, and confirm they pass.
