@@ -1,27 +1,19 @@
 module.exports = {
-  env: {
-    'react-native/react-native': true
-  },
-  parser: '@typescript-eslint/parser',
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-native/all',
-    'standard-with-typescript'
-  ],
-  overrides: [
-  ],
+  root: true,
+  parser: "@typescript-eslint/parser",
+  extends: ["@react-native", "plugin:@typescript-eslint/recommended", "standard", "prettier"],
+  plugins: ["@typescript-eslint", "react", "react-native", "reactotron"],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    project: './tsconfig.json' // Required for Standard plugin
   },
-  plugins: [
-    '@typescript-eslint',
-    'react',
-    'react-native'
-  ],
+  settings: {
+    react: {
+      pragma: "React",
+      version: "detect",
+    },
+  },
   globals: {
     __DEV__: false,
     jasmine: false,
@@ -36,54 +28,35 @@ module.exports = {
     it: false,
   },
   rules: {
-    indent: ['error', 2, { SwitchCase: 1, ignoreComments: true }],
-    'padding-line-between-statements': [
-      'error',
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-object-literal-type-assertion": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        blankLine: 'always',
-        prev: ['const', 'let', 'var'],
-        next: '*',
-      },
-      {
-        blankLine: 'any',
-        prev: ['const', 'let', 'var'],
-        next: ['const', 'let', 'var'],
-      },
-    ],
-    'padded-blocks': [
-      'error',
-      {
-        blocks: 'never',
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
       },
     ],
-    'brace-style': ['error', 'allman'],
-    'prefer-promise-reject-errors': 'off',
-    camelcase: 0,
-    'comma-dangle': 0,
-    'no-unused-vars': 0,
-    'no-undef': 0,
-    'space-before-function-paren': 0,
-
-    'react/no-unescaped-entities': 0,
-    'react/prop-types': 'off',
-    'react-native/no-raw-text': 0,
-
-    //disable some rules to avoid conflicts with eslint rules
-    '@typescript-eslint/ban-ts-ignore': 0,
-    '@typescript-eslint/indent': 0,
-    '@typescript-eslint/explicit-member-accessibility': 0,
-    '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/member-delimiter-style': 0,
-    '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/no-object-literal-type-assertion': 0,
-    '@typescript-eslint/no-empty-interface': 0,
-    '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/camelcase': 0,
-    "@typescript-eslint/brace-style": 0,
-    "@typescript-eslint/naming-convention": 0,
-    "@typescript-eslint/space-before-function-paren": 0,
-    "@typescript-eslint/promise-function-async": 0,
-    "@typescript-eslint/no-floating-promises": 0,
-    "@typescript-eslint/array-type": 0
+    "comma-dangle": 0,
+    "multiline-ternary": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "no-use-before-define": 0,
+    "no-global-assign": 0,
+    quotes: 0,
+    "react-native/no-raw-text": 0,
+    "react/no-unescaped-entities": 0,
+    "react/prop-types": 0,
+    "space-before-function-paren": 0,
+    "reactotron/no-tron-in-production": "error",
   },
 }

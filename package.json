@@ -8,8 +8,21 @@
     "eslintconfig"
   ],
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./prettier": "./prettier.config.cjs",
+    "./tsconfig": "./tsconfig.json"
+  },
+  "files": [
+    "index.js",
+    ".eslintrc.js",
+    "prettier.config.cjs",
+    "tsconfig.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "repository": {
     "type": "git",
@@ -21,28 +34,53 @@
     "url": "https://github.com/MagikbeeDev/eslint-config-magikbee-react-native/issues"
   },
   "homepage": "https://github.com/MagikbeeDev/eslint-config-magikbee-react-native#readme",
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
+  },
+  "lint-staged": {
+    "./app/**/*.{js,jsx,md,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
-    "@typescript-eslint/parser": "^5.39.0",
-    "eslint": "^8.25.0",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.3.0",
-    "eslint-plugin-promise": "^6.0.1",
-    "eslint-plugin-react": "^7.31.9",
-    "eslint-plugin-react-native": "^4.0.0",
-    "typescript": "^4.8.4"
+    "@react-native/eslint-config": "^0.84.1",
+    "@react-native/typescript-config": "^0.84.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-native": "^5.0.0",
+    "eslint-plugin-reactotron": "^0.1.9",
+    "lint-staged": "^16.3.3",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
-    "@typescript-eslint/parser": "^5.39.0",
-    "eslint": "^8.25.0",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.3.0",
-    "eslint-plugin-promise": "^6.0.1",
-    "eslint-plugin-react": "^7.31.9",
-    "eslint-plugin-react-native": "^4.0.0",
-    "typescript": "^4.8.4"
+    "@react-native/eslint-config": ">=0.80.0",
+    "@react-native/typescript-config": ">=0.80.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-native": "^5.0.0",
+    "eslint-plugin-reactotron": "^0.1.9",
+    "prettier": "^3.8.1",
+    "react": ">=19.0.0",
+    "react-native": ">=0.80.0",
+    "typescript": "^5.9.3"
   }
 }
